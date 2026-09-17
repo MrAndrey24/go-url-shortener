@@ -40,7 +40,7 @@ This project follows the Standard Go Project Layout to maintain clean code organ
 ```bash
   url-shortener/
 ├── cmd/
-│   └── main.go              # Application entry point
+│   └── root.go              # Application entry point
 ├── internal/
 │   ├── controller/          # HTTP Handlers (Transport Layer)
 │   │   ├── url_dto.go       # Data Transfer Objects (Request/Response structs)
@@ -58,6 +58,7 @@ This project follows the Standard Go Project Layout to maintain clean code organ
 ├── Dockerfile
 ├── go.mod
 └── go.sum
+└── main.go
 ```
     
 
@@ -78,7 +79,12 @@ go mod download
 3. Run the application:
 
 ```bash
-go run cmd/main.go
+go run main.go
+```
+Or
+
+```bash
+go run .
 ```
 
 The server will start by default on port 8080.

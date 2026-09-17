@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,7 +7,7 @@ import (
 	"github.com/mrandrey24/url-shortening-server/internal/service"
 )
 
-func main() {
+func Execute() {
 
 	repo := local.NewMemoryURLRepository()
 	src := service.NewURLService(repo)
