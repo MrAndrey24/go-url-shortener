@@ -8,12 +8,12 @@ import (
 	"github.com/mrandrey24/url-shortening-server/internal/domain"
 )
 
-// Dependency injection
+// URLService Dependency injection
 type URLService struct {
 	repo domain.URLRepository
 }
 
-// Constructor for URLService
+// NewURLService Constructor for URLService
 func NewURLService(repo domain.URLRepository) *URLService {
 	return &URLService{
 		repo: repo,
@@ -39,7 +39,7 @@ func (s *URLService) CreateShortUrl(req string) (*domain.URL, error) {
 
 func (s *URLService) UpdateShortUrl(code string, req *domain.URL) (*domain.URL, error) {
 	if code == "" || req == nil || req.URL == "" {
-		return nil, errors.New("Invalid Data")
+		return nil, errors.New("invalid Data")
 	}
 	newShortUrl, err := s.repo.Update(code, req)
 

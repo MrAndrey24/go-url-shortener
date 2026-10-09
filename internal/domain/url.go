@@ -13,7 +13,7 @@ type URL struct {
 	AccessCount int64     `json:"accessCount"`
 }
 
-// Method
+// IncrementAccessCount Method
 func (u *URL) IncrementAccessCount() {
 	u.AccessCount++
 	u.UpdatedAt = time.Now()

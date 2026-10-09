@@ -13,7 +13,7 @@ type memoryRepository struct {
 	nextID int64
 }
 
-// Constructor for memoryRepository
+// NewMemoryURLRepository Constructor for memoryRepository
 func NewMemoryURLRepository() domain.URLRepository {
 	return &memoryRepository{
 		urls:   make([]*domain.URL, 0),
