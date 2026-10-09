@@ -38,14 +38,16 @@ This project is based on the roadmap.sh [URL Shortening Service](https://roadmap
 This project follows the Standard Go Project Layout to maintain clean code organization:
 
 ```bash
-  url-shortener/
+url-shortener/
 ├── cmd/
-│   └── root.go              # Application entry point
+│   └── root.go               # Application entry point
 ├── internal/
 │   ├── controller/          # HTTP Handlers (Transport Layer)
-│   │   ├── url_dto.go       # Data Transfer Objects (Request/Response structs)
-│   │   ├── url_handler.go   # Gin route handlers
-│   │   └── url_mapper.go    # Maps between DTOs and Domain models
+│   │   ├── dto/
+│   │   │   └── url_dto.go    # Data Transfer Objects (Request/Response structs)
+│   │   ├── mapper/
+│   │   │   └── url_mapper.go # Maps between DTOs and Domain models
+│   │   └── url_handler.go   # Gin route handlers
 │   ├── data/                # Data Access Layer (Repository Implementation)
 │   │   └── url_data.go      # Local DB logic
 │   ├── domain/              # Business Models (Entities)
@@ -57,7 +59,7 @@ This project follows the Standard Go Project Layout to maintain clean code organ
 ├── docker-compose.yml
 ├── Dockerfile
 ├── go.mod
-└── go.sum
+├── go.sum
 └── main.go
 ```
     
