@@ -1,8 +1,12 @@
-package controller
+package dto
 
 import (
 	"time"
 )
+
+type URLRequest struct {
+	URL string `json:"url" binding:"required,url"`
+}
 
 type URLResponseGetByCode struct {
 	ID        int64     `json:"id"`

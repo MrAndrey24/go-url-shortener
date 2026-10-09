@@ -4,6 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mrandrey24/url-shortening-server/internal/controller/dto"
+	"github.com/mrandrey24/url-shortening-server/internal/controller/mapper"
 	"github.com/mrandrey24/url-shortening-server/internal/domain"
 	"github.com/mrandrey24/url-shortening-server/internal/service"
 )
@@ -18,12 +20,8 @@ func NewURLController(s *service.URLService) *URLController {
 	}
 }
 
-type Url struct {
-	URL string `json:"url"`
-}
-
 func (a *URLController) CreateShortUrl(c *gin.Context) {
-	var req Url
+	var req *dto.URLRequest
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "URL invalid"})
@@ -41,7 +39,7 @@ func (a *URLController) CreateShortUrl(c *gin.Context) {
 
 func (a *URLController) UpdateShortUrl(c *gin.Context) {
 	code := c.Param("code")
-	var req Url
+	var req dto.URLRequest
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "The URL is not valid"})
@@ -58,7 +56,7 @@ func (a *URLController) UpdateShortUrl(c *gin.Context) {
 		return
 	}
 
-	response := domainURLToResponseUpdate(updatedURL)
+	response := mapper.DomainURLToResponseUpdate(updatedURL)
 
 	c.JSON(http.StatusOK, response)
 }
@@ -73,7 +71,7 @@ func (a *URLController) GetShortUrlByCode(c *gin.Context) {
 		return
 	}
 
-	response := domainURLToResponseCode(url)
+	response := mapper.DomainURLToResponseCode(url)
 
 	c.JSON(http.StatusOK, response)
 }
@@ -88,7 +86,7 @@ func (a *URLController) GetShortUrlStats(c *gin.Context) {
 		return
 	}
 
-	response := domainURLToResponseStats(url)
+	response := mapper.DomainURLToResponseStats(url)
 
 	c.JSON(http.StatusOK, response)
 }
